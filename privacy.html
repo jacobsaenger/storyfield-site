@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Storyfield Privacy Policy</title>
+<meta name="description" content="How Storyfield handles your information.">
+<link rel="icon" href="icon.png">
+<style>
+  :root{--paper:#F3F7F3;--card:#FFFFFF;--ink:#10231A;--mute:#5E6F66;--edge:#DCE6DF;--accent:#1F7A4D;--heroA:#0B3D2E;--heroB:#2E8B57;--pop:#D8F26B}
+  @media (prefers-color-scheme: dark){:root{--paper:#0C1712;--card:#13221B;--ink:#E8F2EC;--mute:#9DB3A7;--edge:#22362C;--accent:#6FCF97}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  header{background:linear-gradient(135deg,var(--heroA),var(--heroB));color:#fff;padding:40px 24px 36px}
+  .wrap{max-width:68ch;margin:0 auto}
+  .brand{display:flex;align-items:center;gap:14px;margin:0 0 18px;color:#fff;text-decoration:none;font-weight:600;font-size:18px}
+  .brand img{width:44px;height:44px;border-radius:11px}
+  h1{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:36px;line-height:1.15;margin:0 0 8px;letter-spacing:-.01em}
+  .sub{margin:0;color:#DDEFE4}
+  main{padding:32px 24px 80px}
+  h2{font-size:18px;margin:36px 0 10px;padding-top:22px;border-top:1px solid var(--edge)}
+  main h2:first-child{border-top:0;padding-top:0;margin-top:0}
+  p,ul{margin:0 0 14px} ul{padding-left:20px} li{margin:0 0 8px}
+  a{color:var(--accent)} a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .card{background:var(--card);border:1px solid var(--edge);border-radius:16px;padding:18px 22px;margin:0 0 18px}
+  .pill{display:inline-block;background:var(--pop);color:#0B3D2E;border-radius:999px;padding:2px 10px;font-size:13px;font-weight:600}
+  footer{color:var(--mute);font-size:14px;margin-top:40px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<a class="brand" href="./"><img src="icon.png" alt="">Storyfield</a>
+<h1>Privacy policy</h1>
+<p class="sub">Last updated: October 9, 2026</p>
+</div></header>
+<main><div class="wrap">
+<p>Storyfield is an app for listening to classic books read aloud by new narrators, and for those narrators to build a portfolio. This policy explains what we collect, why, who else handles it, and how to delete it. "Storyfield", "we" and "us" mean Jacob Saenger, Texas, United States. Questions: <a href="mailto:jacob.w.saenger@gmail.com">jacob.w.saenger@gmail.com</a>.</p>
+<h2>What we collect</h2>
+<p><strong>Listening without an account.</strong> If you listen without signing up, the app gives this phone a random identifier from Google Firebase Authentication so it can remember your place in each book and count your plays for narrators. It is not linked to your name or email. If you later create an account, your listening history moves to it.</p>
+<p><strong>Your account.</strong> Your email address and a password. The password goes to Google Firebase Authentication, which stores it in hashed form; we never see it.</p>
+<p><strong>Your public profile.</strong> Your handle, display name, bio, website link, and profile photo, if you add them. These are public: anyone using Storyfield can see them. The numbers on your profile (hours narrated, listens, followers) are public too.</p>
+<p><strong>Who you follow.</strong> Follows are public: a narrator's page shows how many people follow them, and the follow records themselves can be read by other users of the service.</p>
+<p><strong>Recordings you upload</strong> (narrators only). The file you upload, the streaming copy we make from it, and measurements of the audio (length, loudness, peak level). The streaming copy is public once you publish the reading. The original upload is kept privately and is never streamed.</p>
+<p><strong>What you listen to.</strong> How far you got in each chapter, so the app can resume where you left off. This is private to you. When you reach 30 seconds of someone else's chapter, and again when you finish it, we record that once, so the narrator can see how many people played and finished their work. Narrators see counts, never who listened.</p>
+<p><strong>Your device's notification token,</strong> if you allow notifications, so we can tell you when a narrator you follow publishes. Signing out removes it.</p>
+<p><strong>Reports and blocks.</strong> If you report a reading or a narrator, we keep the report (who filed it, what was reported, the reason, and any note you add) to review it. Your block list is private to you.</p>
+<p><strong>Book requests.</strong> If you ask us to add a book, we keep what you typed and who asked, so we can add it.</p>
+<p>We do not collect your location, contacts, or advertising identifiers. There are no ads and no third-party analytics or tracking in the app.</p>
+<h2>How we use it</h2>
+<p>To run the service: sign you in, show your profile, stream recordings, remember your place, count listens for narrators, send the notifications you asked for, and review reports. We do not sell your information or share it for advertising.</p>
+<p><strong>AI training.</strong> We do not use recordings to train, fine-tune, or evaluate machine-learning or AI systems, and we do not let anyone else do so. Any such use would need a separate, explicit opt-in from the narrator, which is off by default.</p>
+<h2>Who else handles it</h2>
+<ul><li><strong>Google Firebase</strong> (Authentication, Cloud Firestore, Cloud Storage, Cloud Functions, Cloud Messaging) stores accounts, profiles, listening progress, and narrators' original uploads, and runs our server code.</li><li><strong>Cloudflare R2</strong> stores and serves the streaming audio.</li><li><strong>Apple Push Notification service</strong> delivers notifications to iPhones.</li><li><strong>Project Gutenberg</strong> (<a href="https://www.gutenberg.org">gutenberg.org</a>) serves the book covers and text the app displays; your device fetches them directly, so Project Gutenberg sees your IP address as with any website.</li></ul>
+<p>These providers process data on our behalf and may store it in the United States.</p>
+<h2>Keeping and deleting</h2>
+<p>We keep your information while your account exists. You can delete your account at any time in <strong>Settings → Delete account</strong>. That removes your profile, handle, follows, listening history, notification tokens, book requests, and, if you narrate, your readings, recordings, streaming copies and original uploads. Counts you contributed to other narrators' work are not reduced. Reports you filed are kept, still marked with the account id that filed them, for as long as needed to resolve them. Copies in our providers' backups expire on their own schedules, typically within 30 days.</p>
+<h2>Children</h2>
+<p>Storyfield is not directed at children under 13, and we do not knowingly collect information from them. If you believe a child has an account, contact us and we will delete it.</p>
+<h2>Your rights</h2>
+<p>Depending on where you live, you may have the right to access, correct, export, or delete your information, or to object to how we use it. Most of this you can do in the app; for anything else, email <a href="mailto:jacob.w.saenger@gmail.com">jacob.w.saenger@gmail.com</a> and we will respond within 30 days.</p>
+<h2>Changes</h2>
+<p>If this policy changes in a way that matters, we will say so in the app before the change takes effect. The date at the top shows the current version.</p>
+<footer><a href="./">Support</a> · <a href="privacy.html">Privacy policy</a> · Storyfield is operated by Jacob Saenger, Texas, United States.</footer>
+</div></main>
+</body>
+</html>

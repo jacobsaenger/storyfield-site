@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Listen free on Storyfield</title>
+<meta name="description" content="A free audiobook someone shared with you. Listen in the Storyfield app: free, no ads, no account needed.">
+<meta property="og:title" content="Listen free on Storyfield">
+<meta property="og:description" content="A free audiobook someone shared with you. No ads, no account needed.">
+<meta property="og:image" content="https://jacobsaenger.github.io/storyfield-site/icon.png">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" href="icon.png">
+<style>
+  :root{--paper:#F3F7F3;--card:#FFFFFF;--ink:#10231A;--mute:#5E6F66;--edge:#DCE6DF;--accent:#1F7A4D;--heroA:#0B3D2E;--heroB:#2E8B57;--pop:#D8F26B}
+  @media (prefers-color-scheme: dark){:root{--paper:#0C1712;--card:#13221B;--ink:#E8F2EC;--mute:#9DB3A7;--edge:#22362C;--accent:#6FCF97}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  header{background:linear-gradient(135deg,var(--heroA),var(--heroB));color:#fff;padding:28px 24px}
+  .wrap{max-width:60ch;margin:0 auto}
+  .brand{display:flex;align-items:center;gap:14px;color:#fff;text-decoration:none;font-weight:600;font-size:18px}
+  .brand img{width:44px;height:44px;border-radius:11px}
+  main{padding:32px 24px 80px}
+  .book{display:flex;gap:20px;align-items:flex-start;margin:0 0 28px}
+  .cover{width:120px;height:120px;object-fit:cover;border-radius:12px;border:1px solid var(--edge);background:var(--card);flex:none}
+  h1{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:30px;line-height:1.2;margin:0 0 6px;letter-spacing:-.01em;overflow-wrap:anywhere}
+  .by,.moment{margin:0 0 4px;color:var(--mute)}
+  .actions{display:flex;flex-direction:column;gap:12px;margin:0 0 24px}
+  .btn{display:block;text-align:center;text-decoration:none;font-weight:600;border-radius:999px;padding:14px 20px}
+  .primary{background:var(--accent);color:#fff}
+  .secondary{background:var(--card);color:var(--ink);border:1px solid var(--edge)}
+  .btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  p{margin:0 0 14px}
+  .note{color:var(--mute);font-size:14px}
+  footer{color:var(--mute);font-size:14px;margin-top:40px}
+  footer a{color:var(--accent)}
+  @media (max-width:420px){.book{flex-direction:column}.cover{width:160px;height:160px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<a class="brand" href="./"><img src="icon.png" alt="">Storyfield</a>
+</div></header>
+<main><div class="wrap">
+<div class="book">
+  <img class="cover" id="cover" alt="" hidden>
+  <div>
+    <h1 id="title">A free audiobook for you</h1>
+    <p class="by" id="by" hidden></p>
+    <p class="moment" id="moment" hidden></p>
+  </div>
+</div>
+<div class="actions">
+  <a class="btn primary" id="open" href="storyfield://listen" hidden>Open in Storyfield</a>
+  <a class="btn secondary" href="https://apps.apple.com/app/id6824326282">Get Storyfield free on the App Store</a>
+</div>
+<p>Storyfield is a free app for classic books read aloud: thousands of audiobooks, no ads, and no account needed.</p>
+<p class="note" id="hint" hidden>Already have Storyfield? “Open in Storyfield” takes you straight to this book.</p>
+<footer><a href="./">Support</a> · <a href="privacy.html">Privacy policy</a></footer>
+</div></main>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  var id = /^[A-Za-z0-9_.-]{1,160}$/;
+  var r = q.get('r');
+  if (!r || !id.test(r)) return;
+
+  function show(el, text) {
+    if (!text) return;
+    el.textContent = text.slice(0, 200);
+    el.hidden = false;
+  }
+  var title = q.get('b');
+  if (title) {
+    document.getElementById('title').textContent = title.slice(0, 200);
+    document.title = title.slice(0, 120) + ' · Storyfield';
+  }
+  show(document.getElementById('by'), q.get('by'));
+
+  var c = q.get('c');
+  var t = parseInt(q.get('t') || '', 10);
+  var chapter = c && id.test(c) ? c : null;
+  if (chapter) {
+    var where = q.get('ct') || 'a shared chapter';
+    if (t >= 0) {
+      var h = Math.floor(t / 3600), m = Math.floor(t % 3600 / 60), s = t % 60;
+      var at = (h ? h + ':' + String(m).padStart(2, '0') : m) + ':' + String(s).padStart(2, '0');
+      show(document.getElementById('moment'), 'From ' + at + ' in ' + where);
+    } else {
+      show(document.getElementById('moment'), where);
+    }
+  }
+
+  // Covers only from the hosts the app uses.
+  var img = q.get('img');
+  var hosts = ['archive.org', 'gutenberg.org', 'firebasestorage.googleapis.com', 'wolnelektury.pl', 'voanews.com', 'voanews.eu', 'libsyn.com', 'craphound.com'];
+  try {
+    var u = new URL(img);
+    var ok = u.protocol === 'https:' && hosts.some(function (h) {
+      return u.hostname === h || u.hostname.endsWith('.' + h);
+    });
+    if (ok) {
+      var cover = document.getElementById('cover');
+      cover.src = u.href;
+      cover.onerror = function () { cover.hidden = true; };
+      cover.hidden = false;
+    }
+  } catch (e) {}
+
+  var open = new URLSearchParams({ r: r });
+  if (chapter) {
+    open.set('c', chapter);
+    if (t >= 0) open.set('t', String(t));
+  }
+  var button = document.getElementById('open');
+  button.href = 'storyfield://listen?' + open.toString();
+  button.hidden = false;
+  document.getElementById('hint').hidden = false;
+})();
+</script>
+</body>
+</html>

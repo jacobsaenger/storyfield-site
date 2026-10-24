@@ -91,7 +91,7 @@
   }
 
   // Covers only from the hosts the app uses; on Firebase Storage, only
-  // Storyfield's own bucket.
+  // Storyfield's own covers folder.
   var img = q.get('img');
   var hosts = ['archive.org', 'gutenberg.org', 'wolnelektury.pl', 'voanews.com', 'voanews.eu', 'libsyn.com', 'craphound.com'];
   try {
@@ -99,7 +99,7 @@
     var ok = u.protocol === 'https:' && (hosts.some(function (h) {
       return u.hostname === h || u.hostname.endsWith('.' + h);
     }) || (u.hostname === 'firebasestorage.googleapis.com' &&
-      u.pathname.indexOf('/v0/b/greenroom-e423c.firebasestorage.app/') === 0));
+      u.pathname.indexOf('/v0/b/greenroom-e423c.firebasestorage.app/o/covers%2F') === 0));
     if (ok) {
       var cover = document.getElementById('cover');
       cover.src = u.href;
